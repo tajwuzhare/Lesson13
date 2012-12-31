@@ -1,4 +1,5 @@
 import javax.swing.*;
+import java.awt.*;
 
 /**
  * Created with IntelliJ IDEA.
@@ -11,7 +12,23 @@ public class BikeOrder {
 	private JComboBox cbox;
 	private String[] models = {"BMX", "Huffy", "Murray", "Trek", "Schwinn"};
 
-	public static void main(String[] args){
+	BikeOrder() {
 
+		cbox = new JComboBox(models);
+
+		JPanel panel = new JPanel();
+		panel.setLayout(new GridLayout(2,1));
+		panel.add(cbox);
+
+		JFrame frame = new JFrame("My Bike Order");
+		frame.add(panel);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.setVisible(true);
+		frame.setSize(300,80);
+
+	}
+
+	public static void main(String[] args){
+		BikeOrder bikeOrder = new BikeOrder();
 	}
 }
