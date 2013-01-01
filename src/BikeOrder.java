@@ -13,6 +13,7 @@ public class BikeOrder {
 	private JTextField textField;
 	private JButton jButton;
 	private String[] models = {"Please Select a Model", "BMX", "Huffy", "Murray", "Trek", "Schwinn"};
+	private JFrame frame;
 
 	BikeOrder() {
 
@@ -26,7 +27,7 @@ public class BikeOrder {
 		panel.add(textField);
 		panel.add(jButton);
 
-		JFrame frame = new JFrame("My Bike Order");
+		frame = new JFrame("My Bike Order");
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
@@ -57,6 +58,13 @@ public class BikeOrder {
 		if (bike == "Trek" && amt > 100) {
 			throw new TooManyBikesException("Damn, that's too many!");
 		}
+		else if (bike == "Schwinn" && amt > 50) {
+			throw new TooManyBikesException("Why so many Schwinns dawg?");
+		}
+	}
+
+	public JFrame getFrame() {
+		return frame;
 	}
 
 	public static void main(String[] args){

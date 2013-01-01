@@ -39,6 +39,7 @@ public class BikeOrderEngine implements ActionListener {
 				parent.validateOrder(bike, num);
 			} catch (TooManyBikesException e) {
 				e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+				JOptionPane.showMessageDialog(parent.getFrame(), e.getMessage(), "Error Message", JOptionPane.INFORMATION_MESSAGE);
 			}
 
 		}
