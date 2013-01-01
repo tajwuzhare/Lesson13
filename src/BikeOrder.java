@@ -9,23 +9,54 @@ import java.awt.*;
  * To change this template use File | Settings | File Templates.
  */
 public class BikeOrder {
-	private JComboBox cbox;
-	private String[] models = {"BMX", "Huffy", "Murray", "Trek", "Schwinn"};
+	private JComboBox comboBox;
+	private JTextField textField;
+	private JButton jButton;
+	private String[] models = {"Please Select a Model", "BMX", "Huffy", "Murray", "Trek", "Schwinn"};
 
 	BikeOrder() {
 
-		cbox = new JComboBox(models);
+		comboBox = new JComboBox(models);
+		textField = new JTextField();
+		jButton = new JButton("Validate");
 
 		JPanel panel = new JPanel();
-		panel.setLayout(new GridLayout(2,1));
-		panel.add(cbox);
+		panel.setLayout(new GridLayout(3,1));
+		panel.add(comboBox);
+		panel.add(textField);
+		panel.add(jButton);
 
 		JFrame frame = new JFrame("My Bike Order");
 		frame.add(panel);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
-		frame.setSize(300,80);
+		frame.setSize(300,160);
+		frame.setLocationRelativeTo(null);
 
+		BikeOrderEngine bikeEngine = new BikeOrderEngine(this);
+
+		comboBox.addActionListener(bikeEngine);
+		textField.addActionListener(bikeEngine);
+		jButton.addActionListener(bikeEngine);
+
+	}
+
+	public void setTextField() {
+
+	}
+
+	public String getTextField() {
+		return textField.getText();
+	}
+
+	public String getBoxItem() {
+		return (String)comboBox.getSelectedItem();
+	}
+
+	public void validateOrder(String bike, double amt) throws TooManyBikesException {
+		if (bike == "Trek" && amt > 100) {
+			throw new TooManyBikesException("Damn, that's too many!");
+		}
 	}
 
 	public static void main(String[] args){
